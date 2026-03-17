@@ -34,7 +34,7 @@ h1,h2,h3,h4,h5{font-family:'Montserrat',sans-serif;line-height:1.1;font-weight:9
 .ss{font-size:.97rem;color:var(--muted);text-align:center;max-width:580px;margin:0 auto;line-height:1.7}
 .sh{text-align:center;margin-bottom:3rem}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;padding:.9rem 2rem;border-radius:100px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;padding:.9rem 2rem;border-radius:100px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s;white-space:normal;text-align:center;word-break:break-word;-webkit-tap-highlight-color:transparent}
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(0)}
 .bp{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(86,54,209,.45),0 4px 20px rgba(226,73,138,.25)}
@@ -229,12 +229,77 @@ footer{background:#030309;border-top:1px solid var(--border);padding:2.5rem 0;te
 .fu{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
 .fu.vis{opacity:1;transform:translateY(0)}
 
-@media(max-width:480px){
-  .hero{padding:5rem 0 3rem}
-  .bxl{font-size:1rem;padding:1rem 2rem}
-  .oprice{font-size:2.3rem}
-  .hctas{flex-direction:column;align-items:stretch}
-  .hctas .btn{text-align:center}
+/* ===== MOBILE FIXES ===== */
+@media(max-width:640px){
+  /* Contenção global — sem overflow horizontal */
+  html,body{overflow-x:hidden;max-width:100vw}
+  .con{padding:0 1rem}
+
+  /* Nav */
+  .nav .btn{font-size:.72rem;padding:.45rem .9rem;letter-spacing:.02em}
+
+  /* Hero */
+  .hero{padding:4.5rem 0 3rem;min-height:auto}
+  .hbadge{font-size:.6rem;letter-spacing:.07em;padding:.35rem .75rem;white-space:normal;text-align:center;line-height:1.4}
+  .hero h1{font-size:clamp(1.65rem,7.5vw,2.4rem);word-break:break-word}
+  .hinner{padding:0 .25rem}
+
+  /* Botões — sem padding excessivo */
+  .bxl{font-size:.93rem;padding:.88rem 1.4rem}
+  .blg{font-size:.93rem;padding:.88rem 1.4rem}
+  .hinner .btn,.fcta .btn,.pain-cta .btn,.cur-cta .btn,.mcta .btn,.inst-inner .btn{width:100%}
+
+  /* Trust bar */
+  .htrust{gap:.6rem}
+  .td{display:none}
+  .ti{font-size:.74rem}
+
+  /* Section tags */
+  .stag{font-size:.62rem;letter-spacing:.07em;white-space:normal;line-height:1.5;text-align:center}
+
+  /* Seções */
+  .sec{padding:3.5rem 0}
+
+  /* Pain CTA */
+  .pain-cta{padding:1.5rem 1rem}
+  .pain-cta p{font-size:1rem}
+
+  /* Módulos — título não vaza */
+  .mh{padding:1rem 1rem;gap:.75rem}
+  .mt{font-size:.84rem;word-break:break-word;overflow-wrap:break-word;min-width:0}
+
+  /* Oferta */
+  .oinc{padding:1.5rem 1.25rem}
+  .ocard{padding:1.5rem 1.25rem}
+  .oprice{font-size:2.2rem}
+  .ocard .btn{width:100%}
+
+  /* Final CTA */
+  .fcta{padding:4rem 0}
+
+  /* Sticky bar — sem overflow */
+  .sbar{padding:.6rem .9rem;gap:.6rem}
+  .sbar-txt{min-width:0}
+  .sbar-txt strong{font-size:.8rem;white-space:normal;overflow-wrap:break-word}
+  .sbar .btn{font-size:.75rem;padding:.55rem .9rem;flex-shrink:0}
+
+  /* FAQ */
+  .fq{font-size:.84rem;padding:1rem 1.1rem}
+
+  /* Credenciais */
+  .cred{font-size:.7rem}
+
+  /* Footer */
+  .flinks{gap:.9rem}
+  .fl{font-size:.74rem}
+}
+
+@media(max-width:380px){
+  .nav .btn{font-size:.66rem;padding:.4rem .7rem}
+  .hero h1{font-size:1.55rem}
+  .hbadge{font-size:.56rem}
+  .bxl,.blg{font-size:.86rem;padding:.8rem 1.1rem}
+  .sbar .btn{font-size:.7rem;padding:.5rem .75rem}
 }
 
 /* STICKY BAR */
