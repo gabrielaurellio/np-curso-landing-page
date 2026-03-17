@@ -241,9 +241,31 @@ footer{background:#030309;border-top:1px solid var(--border);padding:2.5rem 0;te
   .hctas{flex-direction:column;align-items:stretch}
   .hctas .btn{text-align:center}
 }
+
+/* STICKY BAR */
+.sbar{position:fixed;bottom:0;left:0;right:0;z-index:150;background:rgba(6,6,16,.97);border-top:1.5px solid var(--border);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:.7rem 1.25rem;transform:translateY(110%);transition:transform .38s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.sbar.show{transform:translateY(0)}
+.sbar-txt{flex:1;line-height:1.3}
+.sbar-txt strong{color:#fff;display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem}
+.sbar-txt span{font-size:.77rem;color:var(--muted)}
+@media(max-width:480px){.sbar-txt span{display:none}}
+body.has-sbar-show{padding-bottom:64px}
+
+/* VSL */
+.vsl-wrap{max-width:780px;margin:0 auto;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;border:1px solid var(--border);box-shadow:0 0 60px rgba(86,54,209,.25)}
+.vsl-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:16px}
 </style>
 </head>
 <body>
+
+<!-- STICKY BAR (aparece após VSL) -->
+<div class="sbar" id="sbar">
+  <div class="sbar-txt">
+    <strong>🔥 Vagas Limitadas — Inscreva-se Agora</strong>
+    <span>Bônus exclusivos por tempo limitado</span>
+  </div>
+  <a class="btn bp" id="sticky-cta" href="#" target="_blank" rel="noopener" style="font-size:.82rem;padding:.65rem 1.4rem;flex-shrink:0">📲 Garantir Minha Vaga</a>
+</div>
 
 <!-- FLOAT WHATSAPP -->
 <a class="waf" id="waf" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
@@ -253,7 +275,7 @@ footer{background:#030309;border-top:1px solid var(--border);padding:2.5rem 0;te
 <!-- NAV -->
 <nav class="nav">
   <div class="con nv">
-    <div class="nl">🏎️ <span>NP Car Detail</span></div>
+    <div class="nl"><img src="https://www.npcardetail.com.br/wp-content/uploads/2023/06/Logo-NP-Car-Detail-Sem-Fundo.webp" alt="NP Car Detail" style="height:36px;width:auto;display:block"></div>
     <a class="btn bp" id="nav-cta" href="#" target="_blank" rel="noopener">📲 Garantir Minha Vaga</a>
   </div>
 </nav>
@@ -284,6 +306,24 @@ footer{background:#030309;border-top:1px solid var(--border);padding:2.5rem 0;te
   </div>
 </section>
 <div class="hline"></div>
+
+<!-- VSL -->
+<section id="vsl" style="padding:3.5rem 0 4rem;background:var(--bg3)">
+  <div class="con">
+    <div style="text-align:center;margin-bottom:1.75rem" class="fu">
+      <span class="stag">🎬 Assista agora</span>
+      <h2 style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.5rem">Veja como o <span class="gt">método funciona na prática</span></h2>
+      <p style="font-size:.9rem;color:var(--muted)">Assista ao vídeo e descubra por que esse é o curso de polimento e vitrificação mais completo do mercado.</p>
+    </div>
+    <div class="vsl-wrap fu">
+      <!-- ⚠️ Substitua SUBSTITUA_PELO_ID_DO_VIDEO pelo ID do vídeo do YouTube (ex: dQw4w9WgXcQ) -->
+      <iframe src="https://www.youtube.com/embed/SUBSTITUA_PELO_ID_DO_VIDEO?rel=0&modestbranding=1&color=white" title="VSL - Curso de Polimento e Vitrificação NP Car Detail" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div style="text-align:center;margin-top:2rem" class="fu">
+      <a class="btn bp blg bpulse" id="vsl-cta" href="#" target="_blank" rel="noopener">🚀 Quero me Inscrever Agora</a>
+    </div>
+  </div>
+</section>
 
 <!-- LOGOS -->
 <div class="logos">
@@ -463,7 +503,7 @@ footer{background:#030309;border-top:1px solid var(--border);padding:2.5rem 0;te
         <div class="iphoto fu">👨‍🔧</div>
       </div>
       <div class="fu">
-        <div class="iname">[Nome do Instrutor]</div>
+        <div class="iname">Fernando</div>
         <div class="irole">Especialista em Estética Automotiva · NP Car Detail</div>
         <p class="ibio">Com mais de 8 anos no mercado de estética automotiva, é o responsável pelos resultados que renderam à NP Car Detail mais de 4,9 estrelas no Google e centenas de clientes satisfeitos na Grande Florianópolis. Especialista em polimento de correção e aplicação de vitrificação cerâmica, já transformou centenas de veículos e agora compartilha o método completo para quem quer entrar no mercado ou elevar o nível do próprio trabalho.</p>
         <div class="creds">
@@ -645,17 +685,19 @@ function wa(msg) {
 }
 
 var ctaMap = {
-  'waf':       msgs.float,
-  'nav-cta':   msgs.nav,
-  'hero-cta':  msgs.hero,
-  'pain-cta':  msgs.pain,
-  'mid-cta':   msgs.mid,
-  'cur-cta':   msgs.cur,
-  'inst-cta':  msgs.inst,
-  'offer-cta': msgs.offer,
-  'faq-cta':   msgs.faq,
-  'final-cta': msgs.final,
-  'footer-wa': msgs.footer
+  'waf':        msgs.float,
+  'nav-cta':    msgs.nav,
+  'hero-cta':   msgs.hero,
+  'vsl-cta':    msgs.hero,
+  'pain-cta':   msgs.pain,
+  'mid-cta':    msgs.mid,
+  'cur-cta':    msgs.cur,
+  'inst-cta':   msgs.inst,
+  'offer-cta':  msgs.offer,
+  'faq-cta':    msgs.faq,
+  'final-cta':  msgs.final,
+  'footer-wa':  msgs.footer,
+  'sticky-cta': msgs.final
 };
 
 Object.keys(ctaMap).forEach(function(id) {
@@ -694,6 +736,28 @@ var observer = new IntersectionObserver(function(entries) {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fu').forEach(function(el) { observer.observe(el); });
+
+// Sticky bar — aparece após VSL, some perto do rodapé
+var sbar = document.getElementById('sbar');
+var vslSec = document.getElementById('vsl');
+var footerEl = document.querySelector('footer');
+
+function updateSbar() {
+  if (!sbar || !vslSec) return;
+  var vslBottom = vslSec.getBoundingClientRect().bottom;
+  var footerTop = footerEl ? footerEl.getBoundingClientRect().top : Infinity;
+  var winH = window.innerHeight;
+  var shouldShow = vslBottom < 0 && footerTop > winH;
+  if (shouldShow) {
+    sbar.classList.add('show');
+    document.body.classList.add('has-sbar-show');
+  } else {
+    sbar.classList.remove('show');
+    document.body.classList.remove('has-sbar-show');
+  }
+}
+window.addEventListener('scroll', updateSbar, {passive: true});
+updateSbar();
 </script>
 </body>
 </html>
